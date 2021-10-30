@@ -100,7 +100,7 @@ App.post("/cheack/ifthisacount/iswork",(req,res)=>{
         var myclass1 = new DATABASE("FETCH",name,password).Run()
        myclass1.then((data)=>{
            if(data !== undefined && password === data){
-               res.send(data)
+               res.send("OK")
            }
            else{
                res.send("NO")
@@ -113,6 +113,21 @@ App.post("/cheack/ifthisacount/iswork",(req,res)=>{
     }
 
 })
+
+App.post("/cheack/ifthisacount/data",(req,res)=>{
+
+
+        var myclass1 = new DATABASE("ALL","norequire").Run()
+       myclass1.then((data)=>{
+           
+               res.send(data)
+       })
+
+
+})
+
+
+
 
 // This code for level1
 App.post("/bugshadow/vefify/password",(req,res)=>{

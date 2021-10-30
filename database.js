@@ -3,7 +3,7 @@ var fs = require('fs')
 
 
 class DATABASE{
-    constructor(mode='DELET,CREATE,FETCH',...args){
+    constructor(mode='DELET,CREATE,FETCH,ALL',...args){
         this.mode = mode;
         this.valus = args;
     }
@@ -19,6 +19,9 @@ class DATABASE{
         else if(this.mode.toUpperCase() === "DELET"){
             return this.#DeletAcount(this.valus[0])
               
+        }
+        else if(this.mode.toUpperCase() === "ALL"){
+            return this.#GET_alldata()
         }
         else{
            console.log("mode not sclected")
@@ -98,6 +101,24 @@ class DATABASE{
 });
 }
 
+  #GET_alldata(){
+    return new Promise(function(myResolve,myReject){
+
+
+
+        if(fs.existsSync("./DATABASE/data.json")){
+            return (
+            fs.readFile('./DATABASE/data.json','utf8', function readFileCallback(err, data) {
+                var obj =  JSON.parse(data)
+                myResolve(obj)
+            })
+            )
+        }
+        else{
+           myReject("no ok")
+        }
+    });
+  }
 
 }
 module.exports = DATABASE;
