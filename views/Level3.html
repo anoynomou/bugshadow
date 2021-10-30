@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUG SHADOW</title>
+    <link href="https://cdn-icons-png.flaticon.com/512/78/78946.png" rel="icon">
+    <style>
+        body{
+            margin: 0px;
+            background-image: url("https://wallpaperaccess.com/full/950245.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100vw;
+            height: 100%;
+        }
+        #box1{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(104, 104, 104, 0.295);
+            margin-top: 15%;
+            
+        }
+        p{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box1">
+          <p >can you crack this MD5 hash</p>
+        <p>9aaf577a98ebd29b9ecb9a45a797af72</p>
+        <input maxlength="9" id="code" placeholder="Enter the password">
+        <button id="btn" > next</button>
+    </div>
+    <script>
+       
+       
+        document.getElementById("btn").addEventListener("click",()=>{
+            var yourUrl = "/bugshadow/Master/password"
+            var value = String(document.getElementById("code").value)
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", yourUrl, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+        
+        password: value
+        }));
+        xhr.onload = function() {
+        var responseresult = JSON.parse(this.responseText)
+
+
+        if(responseresult.pass !== "Unverify"){
+            document.cookie =`sstwpid=${responseresult.cookie}`
+            window.location.href = responseresult.url
+        }
+        else{}
+      }
+    
+    
+    })
+
+    
+
+
+          </script>  
+          <!--you can use rockyou.txt-->
+</body>
+</html>

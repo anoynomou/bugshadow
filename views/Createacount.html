@@ -1,0 +1,100 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUG SHADOW</title>
+    <link href="https://cdn-icons-png.flaticon.com/512/78/78946.png" rel="icon">
+    <style>
+        body{
+            margin: 0px;
+            background-image: url("https://c4.wallpaperflare.com/wallpaper/222/667/746/black-white-black-background-monochrome-wallpaper-preview.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100vw;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: beige;
+        }
+        #box1{
+            width: 30%;
+            height: 30%;
+            padding: 50px;
+            background-color: rgba(0, 255, 255, 0.39);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 10px;
+        }
+        .inp{
+            background-color: rgba(240, 255, 255, 0.349);
+            color: brown;
+            border-radius: 5px;
+            padding: 10px;
+           font-family: Arial, Helvetica, sans-serif;
+           font-size: large;
+        }
+        #btn{
+            font-size: 16px;
+            
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box1">
+
+    
+    <h1>Congralatuatuon</h1>
+    <p>see you in next challange</p>
+    <input class="inp" id="name" placeholder="Enter your name">
+    
+    <input class="inp" id="password" placeholder="Enter a Password">
+    
+    <button id="btn">LOGIN</button>
+
+</div>
+<script>
+    document.getElementById("btn").addEventListener("click",()=>{
+        var yourUrl = "/moredeepyouhavetoreach"
+        var value = String(document.getElementById("password").value)
+        var name = String(document.getElementById("name").value)
+        
+    if(name !== "" && value !== ""){
+        var xhr = new XMLHttpRequest();
+    xhr.open("POST", yourUrl, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({
+    password: value,
+    name:name
+    }));
+    xhr.onload = function() {
+    var responseresult = JSON.parse(this.responseText)
+    if(responseresult.pass !== "Unverify"){
+        document.cookie = "sstwpid=jsidjiasjdijiajsidjiasjdiujfjsdjfjidjf";
+        window.location.href = "https://www.google.com"
+    }
+    else{
+        
+    }
+  }
+    }
+    else{
+        alert("no value pass")
+    }
+}
+    )
+    window.onblur = function() {
+    window.onfocus= function () {
+        window.location = self.location;
+    }
+};
+      </script>
+<!-- NO MORE FOR NOW  : for login in our new challange page in future you will have to login by using this login name and password -->
+</body>
+</html>

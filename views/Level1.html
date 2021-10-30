@@ -1,0 +1,144 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUG SHADOW</title>
+    <link href="https://cdn-icons-png.flaticon.com/512/78/78946.png" rel="icon">
+    <style>
+        body{
+            margin: 0;
+            background-image: linear-gradient(to right,rgb(17, 16, 16),black,gray);
+            width: 100vw;
+            
+            overflow: auto;
+            color: azure;
+            display: flex;
+            
+            justify-content: center;
+        }
+        #content1{
+            z-index: 1;
+            margin-top: 25%;
+            width: 55vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 65vh;
+            background-color: rgba(0, 255, 255, 0.308);
+            border-radius: 100% 2% 100% 2%;
+            transform: rotateZ(50deg);
+           border: 1px solid rgb(255, 113, 65);
+           overflow: hidden;
+            transition: 1s;
+            animation: myanimation 5s ease-in-out infinite;
+            
+        }
+
+        @keyframes myanimation{
+            0%{
+                border-radius: 100% 2% 100% 2%;
+            }
+            50%{
+                border-radius: 85% 1% 85% 1%;
+            }
+            100%{
+                border-radius: 100% 2% 100% 2%;
+            }
+        }
+
+        #content2{
+           
+           transform: rotateZ(-50deg);
+            padding: 7px;
+          
+           display: flex;
+           justify-content: center;
+           flex-direction: column;
+           align-items: center;
+           
+           background-color: rgba(17, 22, 22, 0.226);
+           border-radius: 50%;
+
+        }
+
+        #content3::after{
+            z-index: -1;
+            content: "";
+            width: 85px;
+            height: 85px;
+            top:40%;
+            filter: blur(4px);
+            left: 42%;
+            border-radius: 50%;
+            position: absolute;
+            background-image: linear-gradient(to left,gray,rgb(129, 177, 151),gray);
+            
+        }
+
+
+        
+    </style>
+</head>
+<body>
+    <div id="content1">
+
+       <div id="content2">
+
+        
+        
+         <p>PASSWORD</p>
+        <div style="width: 200px;height: 50px;display: flex;text-align: center;justify-content: center;font-size: 12px;" > <p>w2MwuQkHMHycIT5t2i+Sjt012YyJDMW6/2FTf/H+8RE=</p></div>
+        <input id="code" placeholder="Enter password">
+        
+        <button id="btn" style="margin-top: 20px;border-radius: 5px;padding: 5px;font-size: 15px;">Continue..</button>
+
+
+      
+    </div>
+    <div id="content3">
+
+    </div>
+    </div>
+    <!--PASSWORD IS ENCRIPTED:https://www.online-toolz.com/tools/text-encryption-decryption.php -->
+    <script>
+        
+       
+        document.getElementById("btn").addEventListener("click",()=>{
+            var yourUrl = "/bugshadow/vefify/password"
+            var value = String(document.getElementById("code").value)
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", yourUrl, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.setRequestHeader("Set-Cookie","session=abc");
+          xhr.setRequestHeader("Cookie",document.cookie);
+        xhr.send(JSON.stringify({
+        password: value
+        
+        })
+        );
+       
+
+        xhr.onload = function() {
+        
+        var responseresult = JSON.parse(this.responseText)
+
+        if(responseresult.pass !== "Unverify"){
+
+        document.cookie =`sstwpid=${responseresult.cookie}`
+         window.location.href = responseresult.url
+        }
+        else{}
+      }
+    
+    
+    })
+    window.onblur = function() {
+    window.onfocus= function () {
+        window.location = self.location;
+    }
+};
+          </script>  
+</body>
+</html>

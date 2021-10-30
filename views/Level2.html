@@ -1,0 +1,107 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUG SHADOW</title>
+    <link href="https://cdn-icons-png.flaticon.com/512/78/78946.png" rel="icon">
+    <style >
+        body{
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            background-image: url("https://i.gifer.com/origin/63/6382c7a769995b9b7942191c25783d9f.gif");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-color: black;
+           
+            justify-content: center;
+            align-items: center;
+
+        }
+        #DARK{
+            height: 500px;
+            width: 500px;
+            background-color: rgba(85, 130, 255, 0.288);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border-radius: 10px;
+            margin-top: 10%;
+            
+
+        }
+        #btn{
+           margin-top: 6rem;
+           border-radius: 10% 60% 60% 10%;
+           border-right: 5px solid rgb(65, 179, 255);
+           background-image: linear-gradient(gray,black,gray);
+           font-size: 1rem;
+           padding: 9px;
+           color: antiquewhite;
+        }
+        #code{
+         text-align: center;
+        }
+        #Level1{
+            color: beige;
+        }
+    </style>
+
+</head>
+<body>
+   
+    
+    
+    <div id="DARK">
+        <p id="Level1">FIND The password</p>
+        <input id="code" name="passcode" placeholder="Enter the Password" type="text">
+        <button id="btn">NEXT ></button>
+    </div>
+    
+
+
+    <script>
+    
+    document.getElementById("btn").addEventListener("click",()=>{
+        var yourUrl = "/bugshadow/beginner/password"
+        var value = String(document.getElementById("code").value)
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", yourUrl, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({
+    password: value
+    }));
+    
+   
+    
+    xhr.onload = function() {
+
+    var responseresult = JSON.parse(this.responseText)
+
+
+    if(responseresult.pass !== "Unverify"){
+            document.cookie =`sstwpid=${responseresult.cookie}`
+            window.location.href = responseresult.url
+        }
+    else{}
+  }
+
+
+})
+
+window.onblur = function() {
+    window.onfocus= function () {
+        window.location = self.location;
+    }
+};
+
+      </script>  
+    <!--YOU ARE FAR AWAY FROM IT , Read this,Opps! its binary :
+        01000110 01101111 01110010 00100000 01100111 01100101 01110100 01110100 01101001 01101110 01100111 00100000 01110100 01101000 01100001 01110100 00100000 01110000 01100001 01110011 01110011 01110111 01101111 01110010 01100100 00100000 01110011 01100101 01101110 01100100 00100000 01110000 01101111 01110011 01110100 00100000 01101111 01101110 00100000 00101111 01110110 01100101 01110010 01101001 01100110 01111001 00101111 01110101 01110101 01100100 01101001 01101000 01100001 01101000 01100001 01110111 01110010 01101111 01101110 01100111
+        
+    -->
+</body>
+</html>
